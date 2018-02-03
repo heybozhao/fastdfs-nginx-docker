@@ -10,7 +10,8 @@ ENV FASTDFS_VERSION master
 ENV LIBFASTCOMMON_VERSION 1.0.35
 ## same as base_path in conf/storage.conf
 ENV FASTDFS_BASE_PATH /data/fdfs
-ENV WEB_BASE_PATH /home/viewshare
+ENV CLIENT_BASE_PATH /mnt/vdb
+ENV SERVER_BASE_PATH /u01/vs/demo_bbc
 
 ## nginx environment
 ENV NGINX_VERSION 1.12.2
@@ -21,8 +22,9 @@ ENV NGX_HTTP_REDIS_VERSION 0.3.8
 
 ## create and link folders
 RUN mkdir -p /usr/src \
-	&& mkdir -p $FASTDFS_BASE_PATH/data \
-	&& mkdir -p $WEB_BASE_PATH/{web,resources} \
+	&& mkdir -p $FASTDFS_BASE_PATH/{data,log} \
+	&& mkdir -p $CLIENT_BASE_PATH \
+	&& mkdir -p $SERVER_BASE_PATH \
 	&& mkdir /boot \
 	&& ln -s $FASTDFS_BASE_PATH/data  $FASTDFS_BASE_PATH/data/M00
 
