@@ -58,6 +58,8 @@ docker run -itd \
   -v /var/log/fdfs/:/data/fdfs/logs/ \
   -v /data/fdfs/data/:/data/fdfs/data/ \
   -v /var/log/nginx/:/var/log/nginx/ \
+  -v /u01/vs/demo_bbc/:/u01/vs/demo_bbc/ \
+  -v /mnt/vdb/:/mnt/vdb/ \
   fastdfs-nginx \
   sh -c "/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart && /usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart && /usr/sbin/nginx -g 'daemon off;'"
 
@@ -68,6 +70,7 @@ docker run -itd \
 docker run -itd \
   --name fastdfs-nginx \
   --network=network0 --ip=192.168.16.6 \
+  -p 80:80 \
   -p 22122:22122 \
   -p 23000:23000 \
   -p 24001:24001 \
