@@ -25,7 +25,7 @@ RUN mkdir -p /usr/src \
 	&& ln -s $FASTDFS_BASE_PATH/data  $FASTDFS_BASE_PATH/data/M00
 
 ## install dependency packages
-RUN yum install -y gcc gcc-c++ gd gd-devel geoip geoip-devel gnupg libc libc-devel libevent libevent-devel libxslt libxslt-devel linux-headers openssl openssl-devel pcre pcre-devel perl unzip zlib zlib-devel
+RUN yum install -y net-tools gcc gcc-c++ gd gd-devel geoip geoip-devel gnupg libc libc-devel libevent libevent-devel libxslt libxslt-devel linux-headers openssl openssl-devel pcre pcre-devel perl unzip zlib zlib-devel
 
 ## install fastdfs common lib
 ADD install/fastdfs/libfastcommon-$LIBFASTCOMMON_VERSION.zip /usr/src/
@@ -145,7 +145,8 @@ RUN CONFIG="\
 	&& mv /tmp/envsubst /usr/local/bin/
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+COPY conf/bbc-fe.conf /etc/nginx/conf.d/bbc-fe.conf
+COPY conf/nginx_fastdfs.conf /etc/nginx/fastdfs.conf.origin
 
 ## some important fast and fast-nginx-module params:
 ## base_path in tracker.conf
@@ -158,7 +159,7 @@ COPY start.sh /boot/start.sh
 RUN chmod 755 /boot/start.sh
 
 ## nginx port
-EXPOSE 24001 24002
+EXPOSE 80 24001 24002
 ## fastdfs Tracker,Storage,FastDHT port
 EXPOSE 22122 23000 11411
 
