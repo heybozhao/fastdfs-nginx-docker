@@ -80,6 +80,8 @@ docker run -itd \
   -v /var/log/fdfs/:/data/fdfs/logs/ \
   -v /data/fdfs/data/:/data/fdfs/data/ \
   -v /var/log/nginx/:/var/log/nginx/ \
+  -v /u01/vs/demo_bbc/:/u01/vs/demo_bbc/ \
+  -v /mnt/vdb/:/mnt/vdb/ \
   fastdfs-nginx \
   sh -c "/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart && /usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart && /usr/sbin/nginx -g 'daemon off;'"
 ``````
