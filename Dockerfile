@@ -27,7 +27,7 @@ RUN mkdir -p /usr/src \
 	&& mkdir -p $SRC_BASE_PATH \
 	&& mkdir -p $SERVER_BASE_PATH \
 	&& mkdir /boot \
-	&& ln -s $FASTDFS_BASE_PATH/data  $FASTDFS_BASE_PATH/data/M00
+	&& ln -sv $FASTDFS_BASE_PATH/data  $FASTDFS_BASE_PATH/data/M00
 
 ## install dependency packages
 RUN yum install -y net-tools gcc gcc-c++ gd gd-devel geoip geoip-devel gnupg libc libc-devel libevent libevent-devel libxslt libxslt-devel linux-headers openssl openssl-devel pcre pcre-devel perl unzip zlib zlib-devel
