@@ -4,7 +4,8 @@
 FROM centos:7
 
 MAINTAINER heybozhao <https://github.com/heybozhao/fastdfs-nginx-docker>
-
+##charset
+ENV LANG en_US.utf8
 ## fastdfs environment
 ENV FASTDFS_VERSION master
 ENV LIBFASTCOMMON_VERSION 1.0.35
