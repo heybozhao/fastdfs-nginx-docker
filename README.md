@@ -6,7 +6,7 @@ Install
 -------------
 * [libfastcommon-1.0.35](https://github.com/happyfish100/libfastcommon)
 * [fastdfs-master (20170712)](https://github.com/happyfish100/fastdfs)
-* [nginx-1.13.3](http://nginx.org/)
+* [nginx-1.12.2](http://nginx.org/)
 * [fastdfs-nginx-module-master (20170710)](https://github.com/happyfish100/fastdfs-nginx-module)
 * [echo-nginx-module-master (20170710)](https://github.com/openresty/echo-nginx-module)
 * [nginx-eval-module-master (20170712)](https://github.com/vkholodkov/nginx-eval-module)
