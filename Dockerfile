@@ -150,7 +150,7 @@ RUN CONFIG="\
 	&& mv /tmp/envsubst /usr/local/bin/
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/bbc-fe.conf /etc/nginx/conf.d/bbc-fe.conf
+COPY conf/bbc.conf /etc/nginx/conf.d/bbc.conf
 COPY conf/nginx_fastdfs.conf /etc/nginx/fastdfs.conf.origin
 
 ## some important fast and fast-nginx-module params:
