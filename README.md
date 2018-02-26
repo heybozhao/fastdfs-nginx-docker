@@ -55,7 +55,7 @@ docker run -itd \
   --name fastdfs-nginx \
   --network=host \
   -v /etc/localtime:/etc/localtime:ro \
-  -v /var/log/fdfs/:/data/fdfs/logs/ \
+  -v /data/fdfs/logs/:/data/fdfs/logs/ \
   -v /data/fdfs/data/:/data/fdfs/data/ \
   -v /var/log/nginx/:/var/log/nginx/ \
   -v /u01/vs/demo_bbc/:/u01/vs/demo_bbc/ \
@@ -77,7 +77,7 @@ docker run -itd \
   -p 24002:24002 \
   -p 11411:11411 \
   -v /etc/localtime:/etc/localtime:ro \
-  -v /var/log/fdfs/:/data/fdfs/logs/ \
+  -v /data/fdfs/logs/:/data/fdfs/logs/ \
   -v /data/fdfs/data/:/data/fdfs/data/ \
   -v /var/log/nginx/:/var/log/nginx/ \
   -v /u01/vs/demo_bbc/:/u01/vs/demo_bbc/ \
