@@ -12,7 +12,7 @@ ENV LIBFASTCOMMON_VERSION 1.0.35
 ## same as base_path in conf/storage.conf
 ENV FASTDFS_BASE_PATH /data/fdfs
 ENV SRC_BASE_PATH /mnt/vdb
-ENV SERVER_BASE_PATH /u01/vs/demo_bbc
+ENV APP_BASE_PATH /u01/vs
 
 ## nginx environment
 ENV NGINX_VERSION 1.12.2
@@ -23,11 +23,11 @@ ENV NGX_HTTP_REDIS_VERSION 0.3.8
 
 ## create and link folders
 RUN mkdir -p /usr/src \
-	&& mkdir -p $FASTDFS_BASE_PATH/{data,logs} \
-	&& mkdir -p $SRC_BASE_PATH \
-	&& mkdir -p $SERVER_BASE_PATH \
+	&& mkdir -p ${FASTDFS_BASE_PATH}/{data,logs} \
+	&& mkdir -p ${SRC_BASE_PATH} \
+	&& mkdir -p ${APP_BASE_PATH} \
 	&& mkdir /boot \
-	&& ln -sv $FASTDFS_BASE_PATH/data  $FASTDFS_BASE_PATH/data/M00
+	&& ln -sv ${FASTDFS_BASE_PATH}/data  ${FASTDFS_BASE_PATH}/data/M00
 
 ## install dependency packages
 RUN yum install -y net-tools gcc gcc-c++ gd gd-devel geoip geoip-devel gnupg libc libc-devel libevent libevent-devel libxslt libxslt-devel linux-headers openssl openssl-devel pcre pcre-devel perl unzip zlib zlib-devel
@@ -156,18 +156,17 @@ COPY conf/nginx_fastdfs.conf /etc/nginx/fastdfs.conf.origin
 ## some important fast and fast-nginx-module params:
 ## base_path in tracker.conf
 ## base_path, store_path0, tracker_server in storage.conf and mod_fastdfs.conf
-COPY conf/tracker.conf /etc/fdfs/tracker.conf
-COPY conf/storage.conf /etc/fdfs/storage.conf
+COPY conf/tracker.conf /etc/fdfs/tracker.conf.default
+COPY conf/storage.conf /etc/fdfs/storage.conf.default
+COPY conf/mod_fastdfs.conf /etc/fdfs/mod_fastdfs.conf.default
 COPY conf/http.conf /etc/fdfs/http.conf
-COPY conf/mod_fastdfs.conf /etc/fdfs/mod_fastdfs.conf
 COPY start.sh /boot/start.sh
+COPY envsubst.sh /boot/envsubst.sh
 RUN chmod 755 /boot/start.sh
-
-## nginx port
-EXPOSE 80 24001 24002
-## fastdfs Tracker,Storage,FastDHT port
-EXPOSE 22122 23000 11411
+RUN chmod 755 /boot/envsubst.sh
+## nginx port fastdfs Tracker,Storage,FastDHT port
+EXPOSE 80 22122 23000
 
 STOPSIGNAL SIGTERM
 
-CMD ["/boot/start.sh"]
+CMD ["/boot/envsubst.sh" && "/boot/start.sh"]
