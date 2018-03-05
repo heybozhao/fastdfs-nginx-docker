@@ -61,13 +61,12 @@ docker run -itd \
   -p 22122:22122 \
   -p 23000:23000 \
   -v /etc/localtime:/etc/localtime:ro \
-  -v /data/fdfs/logs/:/data/fdfs/logs/ \
-  -v /data/fdfs/data/:/data/fdfs/data/ \
+  -v /data/fdfs/:/data/fdfs/ \
   -v /var/log/nginx/:/var/log/nginx/ \
   -v /u01/vs/:/u01/vs/ \
   -v /mnt/vdb/:/mnt/vdb/ \
-  --env FASTDFS_BASE_PATH= \
-  --evn TRACKER_SERVER= \
+  --env FASTDFS_BASE_PATH=/date/fdfs \
+  --evn TRACKER_SERVER=127.0.0.1 \
   fastdfs-nginx \
 ``````
 
