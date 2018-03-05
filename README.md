@@ -66,7 +66,7 @@ docker run -itd \
   -v /var/log/nginx/:/var/log/nginx/ \
   -v /u01/vs/:/u01/vs/ \
   -v /mnt/vdb/:/mnt/vdb/ \
-  --env FASTDFS_BASH_PATH= \
+  --env FASTDFS_BASE_PATH= \
   --evn TRACKER_SERVER= \
   fastdfs-nginx \
 ``````
